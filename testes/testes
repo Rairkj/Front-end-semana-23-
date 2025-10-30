@@ -1,0 +1,26 @@
+from app import app
+
+
+# Teste simples: verifica se a aplicação existe
+def test_app_exists():
+assert app is not None
+
+
+# Teste da rota principal
+
+
+def test_index_route():
+client = app.test_client()
+response = client.get('/')
+assert response.status_code == 200
+assert b'MaÃ§Ã£' in response.data
+
+
+# Teste da rota /greet/<name>
+
+
+def test_greet_route():
+client = app.test_client()
+response = client.get('/greet/Rai')
+assert response.status_code == 200
+assert b'Rai' in response.data
